@@ -21,6 +21,8 @@ vantage_url = 'https://www.alphavantage.co/query'
 params = {'function':'TIME_SERIES_INTRADAY',
           'symbol':'IBM',
           'interval':'1min',
+          'month':'2024-08',
+          'outputsize':'full',
           'apikey':vantage_api_key
           }
 
@@ -31,6 +33,8 @@ url_with_params = f"{vantage_url}?{query_string}"
 r = requests.get(url_with_params)
 
 data = r.json()
+
+print(len(data['Time Series (1min)']))
 
 with open('initial_test.json','w') as file:
     

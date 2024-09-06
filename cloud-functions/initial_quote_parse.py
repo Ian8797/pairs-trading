@@ -20,6 +20,8 @@ with open('initial_test.json','r') as file:
     
 d1 = dict_data['Time Series (1min)']
 
+print(dict_data['Meta Data']['2. Symbol'])
+
 # for i, k in enumerate(d1.keys()):
     
 #     if i < 10:
@@ -28,7 +30,7 @@ d1 = dict_data['Time Series (1min)']
 #     else:
 #         break
     
-data_for_insert = [{'timestamp':k,'symbol':'IBM','price':d1[k]['1. open']} for k in d1.keys()]
+data_for_insert = [{'month':k[:7]+'-01', 'timestamp':k,'symbol_id':1,'symbol':'IBM','price':d1[k]['1. open']} for k in d1.keys()]
 
 
 client = bigquery.Client()
@@ -36,12 +38,12 @@ client = bigquery.Client()
 dataset_id = 'pairs-trading-434703.test_import'
 table_id = f'{dataset_id}.test_quote_data'
 
-errors = client.insert_rows_json(table_id, data_for_insert)
+# errors = client.insert_rows_json(table_id, data_for_insert)
 
-if errors == []:
-    print("Data successfully inserted into BigQuery.")
-else:
-    print(f"Errors occurred: {errors}")
+# if errors == []:
+#     print("Data successfully inserted into BigQuery.")
+# else:
+#     print(f"Errors occurred: {errors}")
 
 
 # path =  '/Users/ianvaimberg/pairs-trading/seeds/s&p500_symbols.csv'
