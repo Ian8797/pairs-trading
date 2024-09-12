@@ -20,7 +20,7 @@ with open('initial_test.json','r') as file:
     
 d1 = dict_data['Time Series (1min)']
 
-print(dict_data['Meta Data']['2. Symbol'])
+print(dict_data['Meta Data'])
 
 # for i, k in enumerate(d1.keys()):
     
